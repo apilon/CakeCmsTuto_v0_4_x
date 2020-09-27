@@ -1,0 +1,271 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2020-09-13 20:33+0000\n"
+"PO-Revision-Date: 2020-09-13 16:48-0400\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+"Last-Translator: \n"
+"Language: fr_CA\n"
+
+#: Controller/ArticlesController.php:60
+msgid "Your article has been saved."
+msgstr ""
+
+#: Controller/ArticlesController.php:63
+msgid "Unable to add your article."
+msgstr ""
+
+#: Controller/ArticlesController.php:79
+msgid "Your article has been updated."
+msgstr ""
+
+#: Controller/ArticlesController.php:82
+msgid "Unable to update your article."
+msgstr ""
+
+#: Controller/ArticlesController.php:93
+msgid "The {0} article has been deleted."
+msgstr ""
+
+#: Controller/CommentsController.php:57
+msgid "Comment must be added from an article"
+msgstr ""
+
+#: Controller/CommentsController.php:67 Controller/CommentsController.php:92
+msgid "The comment has been saved."
+msgstr ""
+
+#: Controller/CommentsController.php:71 Controller/CommentsController.php:96
+msgid "The comment could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/CommentsController.php:113
+msgid "The comment has been deleted."
+msgstr ""
+
+#: Controller/CommentsController.php:115
+msgid "The comment could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:74 Controller/UsersController.php:97
+msgid "The user has been saved."
+msgstr ""
+
+#: Controller/UsersController.php:78 Controller/UsersController.php:101
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:117
+msgid "The user has been deleted."
+msgstr ""
+
+#: Controller/UsersController.php:119
+msgid "The user could not be deleted. Please, try again."
+msgstr ""
+
+#: Template/Articles/add.ctp:10 Template/Articles/edit.ctp:9
+msgid "Save Article"
+msgstr ""
+
+#: Template/Articles/view.ctp:10 Template/Comments/index.ctp:10
+#: Template/Comments/view.ctp:13
+msgid "New Comment"
+msgstr ""
+
+#: Template/Articles/view.ctp:13
+msgid "Related Comments"
+msgstr ""
+
+#: Template/Articles/view.ctp:22 Template/Comments/add.ctp:9
+#: Template/Comments/edit.ctp:9 Template/Comments/index.ctp:9
+#: Template/Comments/index.ctp:25 Template/Comments/view.ctp:9
+#: Template/Users/add.ctp:9 Template/Users/edit.ctp:9
+#: Template/Users/index.ctp:9 Template/Users/index.ctp:25
+#: Template/Users/view.ctp:9 Template/Users/view.ctp:55
+msgid "Actions"
+msgstr "Commandes"
+
+#: Template/Articles/view.ctp:33 Template/Comments/index.ctp:37
+#: Template/Users/index.ctp:37 Template/Users/view.ctp:68
+msgid "View"
+msgstr ""
+
+#: Template/Articles/view.ctp:34 Template/Comments/index.ctp:38
+#: Template/Users/index.ctp:38 Template/Users/view.ctp:69
+msgid "Edit"
+msgstr ""
+
+#: Template/Articles/view.ctp:35 Template/Comments/edit.ctp:11
+#: Template/Comments/index.ctp:39 Template/Users/edit.ctp:11
+#: Template/Users/index.ctp:39 Template/Users/view.ctp:70
+msgid "Delete"
+msgstr ""
+
+#: Template/Articles/view.ctp:35 Template/Comments/edit.ctp:13
+#: Template/Comments/index.ctp:39 Template/Comments/view.ctp:11
+#: Template/Users/edit.ctp:13 Template/Users/index.ctp:39
+#: Template/Users/view.ctp:11 Template/Users/view.ctp:70
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: Template/Comments/add.ctp:10 Template/Comments/edit.ctp:16
+#: Template/Comments/view.ctp:12
+msgid "List Comments"
+msgstr ""
+
+#: Template/Comments/add.ctp:11 Template/Comments/edit.ctp:17
+#: Template/Comments/index.ctp:11 Template/Comments/view.ctp:14
+#: Template/Users/add.ctp:11 Template/Users/edit.ctp:17
+#: Template/Users/index.ctp:11 Template/Users/view.ctp:14
+msgid "List Articles"
+msgstr ""
+
+#: Template/Comments/add.ctp:12 Template/Comments/edit.ctp:18
+#: Template/Comments/index.ctp:12 Template/Comments/view.ctp:15
+#: Template/Users/add.ctp:12 Template/Users/edit.ctp:18
+#: Template/Users/index.ctp:12 Template/Users/view.ctp:15
+msgid "New Article"
+msgstr ""
+
+#: Template/Comments/add.ctp:18
+msgid "Add Comment"
+msgstr ""
+
+#: Template/Comments/add.ctp:25 Template/Comments/edit.ctp:31
+#: Template/Users/add.ctp:24 Template/Users/edit.ctp:30
+msgid "Submit"
+msgstr ""
+
+#: Template/Comments/edit.ctp:24 Template/Comments/view.ctp:10
+msgid "Edit Comment"
+msgstr ""
+
+#: Template/Comments/index.ctp:16
+msgid "Comments"
+msgstr "Commentaires"
+
+#: Template/Comments/index.ctp:47 Template/Users/index.ctp:47
+msgid "first"
+msgstr ""
+
+#: Template/Comments/index.ctp:48 Template/Users/index.ctp:48
+msgid "previous"
+msgstr ""
+
+#: Template/Comments/index.ctp:50 Template/Users/index.ctp:50
+msgid "next"
+msgstr ""
+
+#: Template/Comments/index.ctp:51 Template/Users/index.ctp:51
+msgid "last"
+msgstr ""
+
+#: Template/Comments/index.ctp:53 Template/Users/index.ctp:53
+msgid ""
+"Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} "
+"total"
+msgstr ""
+
+#: Template/Comments/view.ctp:11
+msgid "Delete Comment"
+msgstr ""
+
+#: Template/Comments/view.ctp:22
+msgid "Article"
+msgstr ""
+
+#: Template/Comments/view.ctp:26
+msgid "Name"
+msgstr ""
+
+#: Template/Comments/view.ctp:30 Template/Users/view.ctp:30
+#: Template/Users/view.ctp:47
+msgid "Id"
+msgstr ""
+
+#: Template/Comments/view.ctp:34 Template/Users/view.ctp:34
+#: Template/Users/view.ctp:53
+msgid "Created"
+msgstr ""
+
+#: Template/Comments/view.ctp:38 Template/Users/view.ctp:38
+#: Template/Users/view.ctp:54
+msgid "Modified"
+msgstr ""
+
+#: Template/Comments/view.ctp:43
+msgid "Comment"
+msgstr ""
+
+#: Template/Layout/error.ctp:36
+msgid "Error"
+msgstr ""
+
+#: Template/Layout/error.ctp:44
+msgid "Back"
+msgstr ""
+
+#: Template/Users/add.ctp:10 Template/Users/edit.ctp:16
+#: Template/Users/view.ctp:12
+msgid "List Users"
+msgstr ""
+
+#: Template/Users/add.ctp:18
+msgid "Add User"
+msgstr ""
+
+#: Template/Users/edit.ctp:24 Template/Users/view.ctp:10
+msgid "Edit User"
+msgstr ""
+
+#: Template/Users/index.ctp:10 Template/Users/view.ctp:13
+msgid "New User"
+msgstr ""
+
+#: Template/Users/index.ctp:16
+msgid "Users"
+msgstr ""
+
+#: Template/Users/view.ctp:11
+msgid "Delete User"
+msgstr ""
+
+#: Template/Users/view.ctp:22
+msgid "Email"
+msgstr ""
+
+#: Template/Users/view.ctp:26
+msgid "Password"
+msgstr ""
+
+#: Template/Users/view.ctp:43
+msgid "Related Articles"
+msgstr ""
+
+#: Template/Users/view.ctp:48
+msgid "User Id"
+msgstr ""
+
+#: Template/Users/view.ctp:49
+msgid "Title"
+msgstr ""
+
+#: Template/Users/view.ctp:50
+msgid "Slug"
+msgstr ""
+
+#: Template/Users/view.ctp:51
+msgid "Body"
+msgstr ""
+
+#: Template/Users/view.ctp:52
+msgid "Published"
+msgstr ""
