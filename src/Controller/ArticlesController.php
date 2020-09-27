@@ -13,6 +13,11 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController {
 
+    public function initialize() {
+        parent::initialize();
+        $this->Auth->allow(['tags']);
+    }
+
     public function isAuthorized($user) {
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
@@ -30,6 +35,19 @@ class ArticlesController extends AppController {
         $article = $this->Articles->findBySlug($slug)->first();
 
         return $article->user_id === $user['id'];
+    }
+
+    public function tags(...$tags) {
+        // Use the ArticlesTable to find tagged articles.
+        $articles = $this->Articles->find('tagged', [
+            'tags' => $tags
+        ]);
+
+        // Pass variables into the view template context.
+        $this->set([
+            'articles' => $articles,
+            'tags' => $tags
+        ]);
     }
 
     /**

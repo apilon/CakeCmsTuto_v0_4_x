@@ -102,3 +102,10 @@ Router::scope('/', function (RouteBuilder $routes) {
  * });
  * ```
  */
+// Add this
+// New route we're adding for our tagged action.
+// The trailing `*` tells CakePHP that this action has
+// passed parameters.
+Router::scope('/articles', function (RouteBuilder $routes) {
+    $routes->connect('/tagged/*', ['controller' => 'Articles', 'action' => 'tags']);
+});
