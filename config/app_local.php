@@ -48,7 +48,7 @@ return [
 //            'database' => 'my_app',
             'username' => 'root',
             'password' => 'mysql',
-            'database' => 'cakecmstuto_v0_2_1',
+            'database' => 'cakecmstuto_v0_3_1',
             'log' => true,
             'url' => env('DATABASE_URL', null),
         ],

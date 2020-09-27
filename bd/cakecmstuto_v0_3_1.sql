@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2020 at 10:35 PM
+-- Generation Time: Sep 27, 2020 at 07:01 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cakecmstuto_v0_2_1`
+-- Database: `cakecmstuto_v0_3_1`
 --
 
 -- --------------------------------------------------------
@@ -34,7 +34,7 @@ CREATE TABLE `articles` (
   `title` varchar(255) NOT NULL,
   `slug` varchar(191) NOT NULL,
   `body` text,
-  `published` tinyint(1) DEFAULT '0',
+  `published` tinyint(1) DEFAULT '1',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -45,8 +45,13 @@ CREATE TABLE `articles` (
 
 INSERT INTO `articles` (`id`, `user_id`, `title`, `slug`, `body`, `published`, `created`, `modified`) VALUES
 (1, 1, 'First post en_US', 'first-post', 'This is the first post! en_US', 1, '2020-08-30 12:25:57', '2020-09-13 21:50:20'),
-(2, 1, 'Essai de slug', 'essai-slug', 'Voici un article pour tester le slug', 0, '2020-08-30 00:00:00', '2020-08-30 00:00:00'),
-(4, 1, 'ticourt plus long', 'ticourt-plus-long', 'correct plus long', 0, '2020-08-30 22:16:39', '2020-08-30 22:16:39');
+(2, 1, 'Slug\'s try', 'essai-slug', 'To test the Article\'s slug', 1, '2020-08-30 00:00:00', '2020-09-27 16:22:08'),
+(4, 1, 'Longer title', 'ticourt-plus-long', 'Longer title works fine', 1, '2020-08-30 22:16:39', '2020-09-27 16:22:48'),
+(5, 1, 'Everything about Wikipedia', 'Everything-about-Wikipedia', 'Everything You Always Wanted to Know About Wikipedia', 1, '2020-09-27 16:34:44', '2020-09-27 16:43:54'),
+(6, 1, 'Everything about Montmorency', 'Everything-about-Montmorency', 'Everything You Always Wanted to Know About Montmorency College', 1, '2020-09-27 16:35:23', '2020-09-27 16:44:13'),
+(7, 1, 'Everything about CakePHP', 'Everything-about-CakePHP', 'Everything You Always Wanted to Know About CakePHP', 1, '2020-09-27 16:35:56', '2020-09-27 16:44:24'),
+(10, 1, 'Test d\'article toutes étiquettes', 'Tags-test-article-all', 'Un article avec toutes les étiquettes', 1, '2020-09-27 17:26:25', '2020-09-27 18:54:11'),
+(12, 1, 'Test d\'article une étiquette', 'Tags-test-article-one', 'Un article avec une étiquette', 1, '2020-09-27 18:41:54', '2020-09-27 18:53:26');
 
 -- --------------------------------------------------------
 
@@ -58,6 +63,16 @@ CREATE TABLE `articles_tags` (
   `article_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `articles_tags`
+--
+
+INSERT INTO `articles_tags` (`article_id`, `tag_id`) VALUES
+(10, 1),
+(12, 1),
+(10, 2),
+(10, 3);
 
 -- --------------------------------------------------------
 
@@ -108,16 +123,25 @@ CREATE TABLE `i18n` (
 --
 
 INSERT INTO `i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
-(1, 'en_US', 'Comments', 1, 'name', 'Me'),
-(2, 'en_US', 'Comments', 1, 'comment', 'Congrats for the first post!'),
-(3, 'en_US', 'Articles', 1, 'title', 'First post'),
-(4, 'en_US', 'Articles', 1, 'body', 'This is the first post'),
 (5, 'fr_CA', 'Comments', 1, 'name', 'Moi fr_CA'),
 (6, 'fr_CA', 'Comments', 1, 'comment', 'Félicitations pour le premier article! fr_CA'),
 (7, 'fr_CA', 'Articles', 1, 'title', 'Premier article fr_CA'),
 (8, 'fr_CA', 'Articles', 1, 'body', 'Voici le premier article fr_CA'),
 (9, 'fr_CA', 'Comments', 2, 'name', 'Toi fr_CA'),
-(10, 'fr_CA', 'Comments', 2, 'comment', 'Ton commentaire fr_CA');
+(10, 'fr_CA', 'Comments', 2, 'comment', 'Ton commentaire fr_CA'),
+(11, 'fr_CA', 'Articles', 2, 'title', 'Essai de slug'),
+(12, 'fr_CA', 'Articles', 2, 'body', 'Voici un article pour tester le slug'),
+(13, 'fr_CA', 'Articles', 4, 'title', 'Titre plus long'),
+(14, 'fr_CA', 'Articles', 4, 'body', 'Un article plus long est accepté'),
+(15, 'fr_CA', 'Tags', 1, 'title', 'Éducation'),
+(16, 'fr_CA', 'Tags', 2, 'title', 'Ville de Laval'),
+(17, 'fr_CA', 'Tags', 3, 'title', 'International'),
+(18, 'fr_CA', 'Articles', 5, 'title', 'Tout sur Wikipedia'),
+(19, 'fr_CA', 'Articles', 6, 'title', 'Tout sur Montmorency'),
+(20, 'fr_CA', 'Articles', 7, 'title', 'Tout sur CakePHP'),
+(21, 'fr_CA', 'Articles', 5, 'body', 'Tout ce que vous avez toujours voulu savoir sur Wikipedia'),
+(22, 'fr_CA', 'Articles', 6, 'body', 'Tout ce que vous avez toujours voulu savoir sur le collège Montmorency'),
+(23, 'fr_CA', 'Articles', 7, 'body', 'Tout ce que vous avez toujours voulu savoir sur CakePHP');
 
 -- --------------------------------------------------------
 
@@ -131,6 +155,15 @@ CREATE TABLE `tags` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `title`, `created`, `modified`) VALUES
+(1, 'Training', '2020-09-27 16:37:54', '2020-09-27 16:42:08'),
+(2, 'City of Laval', '2020-09-27 16:38:31', '2020-09-27 16:42:16'),
+(3, 'World', '2020-09-27 16:38:48', '2020-09-27 16:42:24');
 
 -- --------------------------------------------------------
 
@@ -209,7 +242,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -221,13 +254,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `i18n`
 --
 ALTER TABLE `i18n`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
