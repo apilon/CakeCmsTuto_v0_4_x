@@ -35,10 +35,10 @@
             <td><?= h($article->slug) ?></td>
         </tr>
 <!--        <tr>
-            <th scope="row"><?php //__('Id') ?></th>
-            <td><?php //$this->Number->format($article->id) ?></td>
+            <th scope="row"><?php //__('Id')  ?></th>
+            <td><?php //$this->Number->format($article->id)  ?></td>
         </tr>
--->        <tr>
+        -->        <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($article->created) ?></td>
         </tr>
@@ -58,59 +58,76 @@
     <div class="related">
         <h4><?= __('Related Tags') ?></h4>
         <?php if (!empty($article->tags)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Title') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($article->tags as $tags): ?>
-            <tr>
-                <td><?= h($tags->id) ?></td>
-                <td><?= h($tags->title) ?></td>
-                <td><?= h($tags->created) ?></td>
-                <td><?= h($tags->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Tags', 'action' => 'view', $tags->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Tags', 'action' => 'edit', $tags->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Tags', 'action' => 'delete', $tags->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tags->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th scope="col"><?= __('Id') ?></th>
+                    <th scope="col"><?= __('Title') ?></th>
+                    <th scope="col"><?= __('Created') ?></th>
+                    <th scope="col"><?= __('Modified') ?></th>
+                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                </tr>
+                <?php foreach ($article->tags as $tags): ?>
+                    <tr>
+                        <td><?= h($tags->id) ?></td>
+                        <td><?= h($tags->title) ?></td>
+                        <td><?= h($tags->created) ?></td>
+                        <td><?= h($tags->modified) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['controller' => 'Tags', 'action' => 'view', $tags->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['controller' => 'Tags', 'action' => 'edit', $tags->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['controller' => 'Tags', 'action' => 'delete', $tags->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tags->id)]) ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Comments') ?></h4>
-        <?php if (!empty($article->comments)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Article Id') ?></th>
-                <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Comment') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($article->comments as $comments): ?>
-            <tr>
-                <td><?= h($comments->id) ?></td>
-                <td><?= h($comments->article_id) ?></td>
-                <td><?= h($comments->name) ?></td>
-                <td><?= h($comments->comment) ?></td>
-                <td><?= h($comments->created) ?></td>
-                <td><?= h($comments->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Comments', 'action' => 'view', $comments->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
-                </td>
-            </tr>
+        <h4><?= __('Related Files') ?></h4>
+        <?php if (!empty($article->files)): ?>
+            <table cellpadding="0" cellspacing="0">
+                <?php foreach ($article->files as $files): ?>
+                    <tr>
+                        <td>    <?php
+                            echo $this->Html->image($files->path . $files->name, [
+                                "alt" => $files->name,
+                            ]);
+                            ?></td>
+                    </tr>
             <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+            </table>
+<?php endif; ?>
+    </div>
+
+    <div class="related">
+        <h4><?= __('Related Comments') ?></h4>
+<?php if (!empty($article->comments)): ?>
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th scope="col"><?= __('Id') ?></th>
+                    <th scope="col"><?= __('Article Id') ?></th>
+                    <th scope="col"><?= __('Name') ?></th>
+                    <th scope="col"><?= __('Comment') ?></th>
+                    <th scope="col"><?= __('Created') ?></th>
+                    <th scope="col"><?= __('Modified') ?></th>
+                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                </tr>
+    <?php foreach ($article->comments as $comments): ?>
+                    <tr>
+                        <td><?= h($comments->id) ?></td>
+                        <td><?= h($comments->article_id) ?></td>
+                        <td><?= h($comments->name) ?></td>
+                        <td><?= h($comments->comment) ?></td>
+                        <td><?= h($comments->created) ?></td>
+                        <td><?= h($comments->modified) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['controller' => 'Comments', 'action' => 'view', $comments->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
+        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
+                        </td>
+                    </tr>
+            <?php endforeach; ?>
+            </table>
+<?php endif; ?>
     </div>
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2020 at 07:01 PM
+-- Generation Time: Sep 28, 2020 at 02:00 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cakecmstuto_v0_3_1`
+-- Database: `cakecmstuto_v0_4_1`
 --
 
 -- --------------------------------------------------------
@@ -47,11 +47,34 @@ INSERT INTO `articles` (`id`, `user_id`, `title`, `slug`, `body`, `published`, `
 (1, 1, 'First post en_US', 'first-post', 'This is the first post! en_US', 1, '2020-08-30 12:25:57', '2020-09-13 21:50:20'),
 (2, 1, 'Slug\'s try', 'essai-slug', 'To test the Article\'s slug', 1, '2020-08-30 00:00:00', '2020-09-27 16:22:08'),
 (4, 1, 'Longer title', 'ticourt-plus-long', 'Longer title works fine', 1, '2020-08-30 22:16:39', '2020-09-27 16:22:48'),
-(5, 1, 'Everything about Wikipedia', 'Everything-about-Wikipedia', 'Everything You Always Wanted to Know About Wikipedia', 1, '2020-09-27 16:34:44', '2020-09-27 16:43:54'),
-(6, 1, 'Everything about Montmorency', 'Everything-about-Montmorency', 'Everything You Always Wanted to Know About Montmorency College', 1, '2020-09-27 16:35:23', '2020-09-27 16:44:13'),
-(7, 1, 'Everything about CakePHP', 'Everything-about-CakePHP', 'Everything You Always Wanted to Know About CakePHP', 1, '2020-09-27 16:35:56', '2020-09-27 16:44:24'),
+(5, 1, 'Everything about Wikipedia', 'Everything-about-Wikipedia', 'Everything You Always Wanted to Know About Wikipedia', 1, '2020-09-27 16:34:44', '2020-09-27 19:30:59'),
+(6, 1, 'Everything about Montmorency', 'Everything-about-Montmorency', 'Everything You Always Wanted to Know About Montmorency College', 1, '2020-09-27 16:35:23', '2020-09-27 19:31:30'),
+(7, 1, 'Everything about CakePHP', 'Everything-about-CakePHP', 'Everything You Always Wanted to Know About CakePHP', 1, '2020-09-27 16:35:56', '2020-09-28 01:58:59'),
 (10, 1, 'Test d\'article toutes étiquettes', 'Tags-test-article-all', 'Un article avec toutes les étiquettes', 1, '2020-09-27 17:26:25', '2020-09-27 18:54:11'),
-(12, 1, 'Test d\'article une étiquette', 'Tags-test-article-one', 'Un article avec une étiquette', 1, '2020-09-27 18:41:54', '2020-09-27 18:53:26');
+(12, 1, 'Test d\'article une étiquette', 'Tags-test-article-one', 'Un article avec une étiquette', 1, '2020-09-27 18:41:54', '2020-09-27 18:53:26'),
+(13, 1, 'Article with image', 'Article-with-image', 'Associate an image to the article', 1, '2020-09-28 01:51:45', '2020-09-28 01:51:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `articles_files`
+--
+
+CREATE TABLE `articles_files` (
+  `id` int(11) NOT NULL,
+  `article_id` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `articles_files`
+--
+
+INSERT INTO `articles_files` (`id`, `article_id`, `file_id`) VALUES
+(1, 1, 1),
+(2, 13, 2),
+(3, 7, 1),
+(4, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -69,9 +92,14 @@ CREATE TABLE `articles_tags` (
 --
 
 INSERT INTO `articles_tags` (`article_id`, `tag_id`) VALUES
+(6, 1),
+(7, 1),
 (10, 1),
 (12, 1),
+(6, 2),
 (10, 2),
+(5, 3),
+(7, 3),
 (10, 3);
 
 -- --------------------------------------------------------
@@ -83,7 +111,7 @@ INSERT INTO `articles_tags` (`article_id`, `tag_id`) VALUES
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `comment` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
@@ -106,16 +134,39 @@ INSERT INTO `comments` (`id`, `article_id`, `name`, `comment`, `created`, `modif
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = Active, 0 = Inactive'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`id`, `name`, `path`, `created`, `modified`, `status`) VALUES
+(1, 'helfenburk_shody.jpg', 'files/add/', '2020-09-27 00:00:00', '2020-09-27 00:00:00', 1),
+(2, 'bezdez_uvnitr.jpg', 'files/add/', '2020-09-28 01:50:46', '2020-09-28 01:50:46', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `i18n`
 --
 
 CREATE TABLE `i18n` (
   `id` int(11) NOT NULL,
-  `locale` varchar(6) COLLATE utf8mb4_general_ci NOT NULL,
-  `model` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `locale` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `foreign_key` int(10) NOT NULL,
-  `field` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `content` text COLLATE utf8mb4_general_ci
+  `field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -200,6 +251,14 @@ ALTER TABLE `articles`
   ADD KEY `user_key` (`user_id`);
 
 --
+-- Indexes for table `articles_files`
+--
+ALTER TABLE `articles_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `article_id` (`article_id`),
+  ADD KEY `file_id` (`file_id`);
+
+--
 -- Indexes for table `articles_tags`
 --
 ALTER TABLE `articles_tags`
@@ -212,6 +271,12 @@ ALTER TABLE `articles_tags`
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `article_comments_fk` (`article_id`);
+
+--
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `i18n`
@@ -242,13 +307,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `articles_files`
+--
+ALTER TABLE `articles_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `i18n`

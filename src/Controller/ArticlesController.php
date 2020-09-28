@@ -57,7 +57,7 @@ class ArticlesController extends AppController {
      */
     public function index() {
         $this->paginate = [
-            'contain' => ['Users', 'Tags'],
+            'contain' => ['Users', 'Tags', 'Files'],
         ];
         $articles = $this->paginate($this->Articles);
 
@@ -74,7 +74,7 @@ class ArticlesController extends AppController {
     public function view($slug = null) {
         $article = $this->Articles->find()
                 ->where(['Articles.slug' => $slug])
-                ->contain(['Comments', 'Tags'])
+                ->contain(['Comments', 'Tags', 'Files'])
                 ->firstOrFail();
 
         $this->set('article', $article);
@@ -98,9 +98,9 @@ class ArticlesController extends AppController {
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-//        $users = $this->Articles->Users->find('list', ['limit' => 200]);
+        $files = $this->Articles->Files->find('list', ['limit' => 200]);
         $tags = $this->Articles->Tags->find('list', ['limit' => 200]);
-        $this->set(compact('article', 'tags'));
+        $this->set(compact('article', 'tags', 'files'));
     }
 
     /**
@@ -112,7 +112,7 @@ class ArticlesController extends AppController {
      */
     public function edit($slug = null) {
         $article = $this->Articles->findBySlug($slug)
-                ->contain('Tags')
+                ->contain('Tags', 'Files')
                 ->firstOrFail();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $article = $this->Articles->patchEntity($article, $this->request->getData(), [
@@ -126,9 +126,9 @@ class ArticlesController extends AppController {
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-//        $users = $this->Articles->Users->find('list', ['limit' => 200]);
+        $files = $this->Articles->Files->find('list', ['limit' => 200]);
         $tags = $this->Articles->Tags->find('list', ['limit' => 200]);
-        $this->set(compact('article', 'tags'));
+        $this->set(compact('article', 'tags', 'files'));
     }
 
     /**

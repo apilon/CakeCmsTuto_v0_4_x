@@ -24,22 +24,34 @@
                 <th scope="col"><?= $this->Paginator->sort('by') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('File') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($articles as $article): ?>
-            <tr>
-                <td><?= $article->has('user') ? $this->Html->link($article->user->email, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
-                <td><?= h($article->title) ?></td>
-                <td><?= h($article->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $article->slug]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->slug]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $article->slug)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
+                <tr>
+                    <td><?= $article->has('user') ? $this->Html->link($article->user->email, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
+                    <td><?= h($article->title) ?></td>
+                    <td><?= h($article->modified) ?></td>
+                    <td><?php
+                        if (isset($article->files[0])) {
+                            echo $this->Html->image($article->files[0]->path . $article->files[0]->name, [
+                                "alt" => $article->files[0]->name,
+                                "width" => "220px",
+                                "height" => "150px",
+                                'url' => ['controller' => 'Files', 'action' => 'view', $article->files[0]->id]
+                            ]);
+                        }
+                        ?>
+                    </td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $article->slug]) ?>
+    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->slug]) ?>
+                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->slug], ['confirm' => __('Are you sure you want to delete # {0}?', $article->slug)]) ?>
+                    </td>
+                </tr>
+<?php endforeach; ?>
         </tbody>
     </table>
     <div class="paginator">
@@ -47,8 +59,8 @@
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+<?= $this->Paginator->next(__('next') . ' >') ?>
+<?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
